@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <data>
+                <import type="android.view.View"/>
+                <variable
+                    name="viewmodel"
+                    type="com.example.moviekotlin.viewmodels.ListMovieViewModels" />
+        </data>
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                <ProgressBar
+                    android:id="@+id/progress_isLoading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="@{viewmodel.isLoading().booleanValue() == true ? View.VISIBLE : View.GONE}"/>
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/recycler_view_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{viewmodel.isEmpty().booleanValue() == true ? View.GONE : View.VISIBLE}">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listMovie"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:divider="@android:color/white"
+                            android:dividerHeight="20dp"
+                            android:padding="5dp"/>
+                </androidx.core.widget.NestedScrollView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
